@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zone - EarnoVax</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: #00FF88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .tier-section {
+            margin-bottom: 40px;
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+            border-left: 4px solid #FFD700;
+            border-radius: 8px;
+        }
+
+        .tier-header.silver {
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.1) 0%, transparent 100%);
+            border-left-color: #C0C0C0;
+        }
+
+        .tier-header .icon {
+            font-size: 28px;
+        }
+
+        .tier-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            color: #FFD700;
+        }
+
+        .tier-header.silver h2 {
+            color: #C0C0C0;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00FF88, #00D4AA);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 136, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .game-card:active {
+            transform: translateY(-2px);
+        }
+
+        .game-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00FF88 0%, #00D4AA 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .game-description {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, #00FF88 0%, #00D4AA 100%);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .play-button:hover {
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
+            transform: scale(1.02);
+        }
+
+        .play-button:active {
+            transform: scale(0.98);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .badge.silver {
+            background: rgba(192, 192, 192, 0.2);
+            color: #C0C0C0;
+            border-color: rgba(192, 192, 192, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* Floating animation for icons */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .game-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎮 Game Zone</h1>
+        <p>Play amazing games and earn rewards!</p>
+    </div>
+
+    <!-- GOLD TIER -->
+    <div class="tier-section">
+        <div class="tier-header">
+            <span class="icon">🥇</span>
+            <div>
+                <h2>GOLD TIER</h2>
+                <p style="font-size: 12px; color: #888;">High Focus - Premium Games</p>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Subway Surfers -->
+            <div class="game-card"
+                onclick="playGame('https://html-online-game.github.io/subway-surfers/', 'Subway Surfers')">
+                <span class="badge">HOT 🔥</span>
+                <div class="game-icon">🏃</div>
+                <div class="game-title">Subway Surfers</div>
+                <div class="game-description">
+                    Run, dash, and dodge through subway tracks! Collect coins, avoid obstacles, and surf on hoverboards
+                    in this endless runner classic.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Stickman Hook -->
+            <div class="game-card"
+                onclick="playGame('https://html-online-game.github.io/stickman-hook/', 'Stickman Hook')">
+                <span class="badge">TRENDING ⚡</span>
+                <div class="game-icon">🤸</div>
+                <div class="game-title">Stickman Hook</div>
+                <div class="game-description">
+                    Swing like a spider! Tap to hook and make incredible jumps. Time your movements perfectly to reach
+                    the finish line.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Ball Sort Puzzle -->
+            <div class="game-card"
+                onclick="playGame('https://html-online-game.github.io/ball-sort-halloween/', 'Ball Sort Puzzle')">
+                <span class="badge">PUZZLE 🧩</span>
+                <div class="game-icon">🎱</div>
+                <div class="game-title">Ball Sort Puzzle</div>
+                <div class="game-description">
+                    Sort colored balls into tubes! A challenging and relaxing puzzle game that tests your logic and
+                    planning skills.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Park Out -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/park-out/', 'Park Out')">
+                <span class="badge">STRATEGY 🎯</span>
+                <div class="game-icon">🚗</div>
+                <div class="game-title">Park Out</div>
+                <div class="game-description">
+                    Unblock the parking lot! Move cars in the right order to clear the path. A brain-teasing parking
+                    puzzle challenge.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Hextris -->
+            <div class="game-card" onclick="playGame('https://hextris.io/', 'Hextris')">
+                <span class="badge">ARCADE 🎮</span>
+                <div class="game-icon">⬢</div>
+                <div class="game-title">Hextris</div>
+                <div class="game-description">
+                    Fast-paced hexagonal Tetris! Rotate the hexagon to match falling blocks. Quick reflexes required for
+                    high scores!
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- 2048 -->
+            <div class="game-card" onclick="playGame('https://play2048.co/', '2048')">
+                <span class="badge">CLASSIC 👑</span>
+                <div class="game-icon">🔢</div>
+                <div class="game-title">2048</div>
+                <div class="game-description">
+                    Join numbers to reach 2048! Swipe to merge tiles in this addictive math puzzle. Simple rules,
+                    challenging gameplay.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SILVER TIER -->
+    <div class="tier-section">
+        <div class="tier-header silver">
+            <span class="icon">🥈</span>
+            <div>
+                <h2>SILVER TIER</h2>
+                <p style="font-size: 12px; color: #888;">Casual - Fun & Relaxing</p>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Adventure Drivers -->
+            <div class="game-card"
+                onclick="playGame('https://html-online-game.github.io/adventure-drivers/', 'Adventure Drivers')">
+                <span class="badge silver">RACING 🏁</span>
+                <div class="game-icon">🏎️</div>
+                <div class="game-title">Adventure Drivers</div>
+                <div class="game-description">
+                    Hit the gas and race through wild terrains! Navigate bumpy roads, perform stunts, and reach the
+                    finish line in this adrenaline-pumping racing game.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Swingo -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/swingo/', 'Swingo')">
+                <span class="badge silver">CASUAL 🎈</span>
+                <div class="game-icon">🪀</div>
+                <div class="game-title">Swingo</div>
+                <div class="game-description">
+                    Swing and fly! Control your character through challenging levels. Master the rope physics and timing
+                    for a smooth journey.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Ballistic -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/ballistic/', 'Ballistic')">
+                <span class="badge silver">SHOOTER 🎯</span>
+                <div class="game-icon">⚽</div>
+                <div class="game-title">Ballistic</div>
+                <div class="game-description">
+                    Aim, shoot, and destroy! Break colorful blocks in this satisfying ball-shooting puzzle game. Plan
+                    your shots wisely!
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Hole and Mole -->
+            <div class="game-card"
+                onclick="playGame('https://dhruv35m.github.io/hole-and-mole-game/', 'Hole and Mole')">
+                <span class="badge silver">REFLEX 👀</span>
+                <div class="game-icon">🦡</div>
+                <div class="game-title">Hole and Mole</div>
+                <div class="game-description">
+                    Whack-a-mole classic! Test your reflexes and speed. Tap the moles before they disappear and beat
+                    your high score!
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Clumsy Bird -->
+            <div class="game-card" onclick="playGame('https://ellisonleao.github.io/clumsy-bird/', 'Clumsy Bird')">
+                <span class="badge silver">FLAPPY 🐦</span>
+                <div class="game-icon">🐤</div>
+                <div class="game-title">Clumsy Bird</div>
+                <div class="game-description">
+                    Flappy Bird remake! Tap to fly and avoid pipes. Simple controls, endless fun. How far can you go
+                    without crashing?
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Tower Building -->
+            <div class="game-card" onclick="playGame('https://iamkun.github.io/tower_game/', 'Tower Building')">
+                <span class="badge silver">BUILDER 🏗️</span>
+                <div class="game-icon">🏢</div>
+                <div class="game-title">Tower Building</div>
+                <div class="game-description">
+                    Stack blocks to build the tallest tower! Perfect timing is key. Drop blocks precisely to create an
+                    epic skyscraper.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Tetris -->
+            <div class="game-card" onclick="playGame('https://chvin.github.io/react-tetris/', 'Tetris')">
+                <span class="badge silver">CLASSIC 🎮</span>
+                <div class="game-icon">🟦</div>
+                <div class="game-title">Tetris</div>
+                <div class="game-description">
+                    The legendary block-stacking game! Rotate and place falling pieces to clear lines. A timeless puzzle
+                    that never gets old.
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Alien Invasion -->
+            <div class="game-card" onclick="playGame('https://cykod.github.io/AlienInvasion/', 'Alien Invasion')">
+                <span class="badge silver">SHOOTER 👾</span>
+                <div class="game-icon">👽</div>
+                <div class="game-title">Alien Invasion</div>
+                <div class="game-description">
+                    Defend Earth from alien invaders! Classic space shooter action. Shoot down waves of enemies and save
+                    humanity!
+                </div>
+                <button class="play-button">▶ Play Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function playGame(url, name) {
+            // Option 1: Open in the same WebView (if your app supports it)
+            window.location.href = url;
+
+            // Option 2: If you implement JavaScript bridge to Flutter
+            // You can send a message to open GamePlayScreen
+            /*
+            if (window.FlutterChannel) {
+                window.FlutterChannel.postMessage(JSON.stringify({
+                    action: 'playGame',
+                    gameUrl: url,
+                    gameName: name
+                }));
+            } else {
+                window.location.href = url;
+            }
+            */
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', function (e) {
+                if (!e.target.classList.contains('play-button')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Add ripple effect on click
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+
+</html>
