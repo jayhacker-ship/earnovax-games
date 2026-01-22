@@ -88,7 +88,6 @@
         .game-card {
             background: linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
             border-radius: 15px;
-            padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
@@ -122,17 +121,16 @@
             transform: translateY(-2px);
         }
 
-        .game-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00FF88 0%, #00D4AA 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        .game-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        }
+
+        .game-content {
+            padding: 20px;
         }
 
         .game-title {
@@ -147,6 +145,7 @@
             color: #888;
             line-height: 1.5;
             margin-bottom: 15px;
+            min-height: 60px;
         }
 
         .play-button {
@@ -177,18 +176,19 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(255, 215, 0, 0.2);
-            color: #FFD700;
+            background: rgba(255, 215, 0, 0.9);
+            color: #000;
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10px;
             font-weight: 700;
             border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 10;
         }
 
         .badge.silver {
-            background: rgba(192, 192, 192, 0.2);
-            color: #C0C0C0;
+            background: rgba(192, 192, 192, 0.9);
+            color: #000;
             border-color: rgba(192, 192, 192, 0.3);
         }
 
@@ -200,23 +200,6 @@
             .header h1 {
                 font-size: 24px;
             }
-        }
-
-        /* Floating animation for icons */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .game-icon {
-            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -238,79 +221,128 @@
         </div>
 
         <div class="games-grid">
+            <!-- 8 Ball Pool (New) -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/8ball-pool/', '8 Ball Pool')">
+                <span class="badge">SPORTS 🎱</span>
+                <img src="assets/images/games/8ball-pool.png" alt="8 Ball Pool" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">8 Ball Pool</div>
+                    <div class="game-description">
+                        Classic billiards action! Play against the computer or challenge yourself in this realistic pool
+                        game.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
+                </div>
+            </div>
+
             <!-- Subway Surfers -->
             <div class="game-card"
                 onclick="playGame('https://html-online-game.github.io/subway-surfers/', 'Subway Surfers')">
                 <span class="badge">HOT 🔥</span>
-                <div class="game-icon">🏃</div>
-                <div class="game-title">Subway Surfers</div>
-                <div class="game-description">
-                    Run, dash, and dodge through subway tracks! Collect coins, avoid obstacles, and surf on hoverboards
-                    in this endless runner classic.
+                <img src="assets/images/games/subway-surfers.png" alt="Subway Surfers" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Subway Surfers</div>
+                    <div class="game-description">
+                        Run, dash, and dodge through subway tracks! Collect coins, avoid obstacles, and surf on
+                        hoverboards.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Drive Mad (New) -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/drive-mad/', 'Drive Mad')">
+                <span class="badge">NEW 🚀</span>
+                <img src="assets/images/games/drive-mad.png" alt="Drive Mad" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Drive Mad</div>
+                    <div class="game-description">
+                        Drive through crazy tracks with unique vehicles! Balance and speed are key to survival.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
+                </div>
+            </div>
+
+            <!-- Hoop Royale (New) -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/hoop-royale/', 'Hoop Royale')">
+                <span class="badge">NEW 🏀</span>
+                <img src="assets/images/games/hoop-royale.png" alt="Hoop Royale" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Hoop Royale</div>
+                    <div class="game-description">
+                        Dribble, shoot, and score! Navigate the ring through obstacles in this addictive arcade game.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
+                </div>
             </div>
 
             <!-- Stickman Hook -->
             <div class="game-card"
                 onclick="playGame('https://html-online-game.github.io/stickman-hook/', 'Stickman Hook')">
                 <span class="badge">TRENDING ⚡</span>
-                <div class="game-icon">🤸</div>
-                <div class="game-title">Stickman Hook</div>
-                <div class="game-description">
-                    Swing like a spider! Tap to hook and make incredible jumps. Time your movements perfectly to reach
-                    the finish line.
+                <img src="assets/images/games/stickman-hook.png" alt="Stickman Hook" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Stickman Hook</div>
+                    <div class="game-description">
+                        Swing like a spider! Tap to hook and make incredible jumps. Perfect timing is the key to
+                        victory.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Ball Sort Puzzle -->
             <div class="game-card"
                 onclick="playGame('https://html-online-game.github.io/ball-sort-halloween/', 'Ball Sort Puzzle')">
                 <span class="badge">PUZZLE 🧩</span>
-                <div class="game-icon">🎱</div>
-                <div class="game-title">Ball Sort Puzzle</div>
-                <div class="game-description">
-                    Sort colored balls into tubes! A challenging and relaxing puzzle game that tests your logic and
-                    planning skills.
+                <img src="assets/images/games/ball-shoot.png" alt="Ball Sort" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Ball Sort Puzzle</div>
+                    <div class="game-description">
+                        Sort colored balls into tubes! A challenging puzzle that tests your logic and planning skills.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Park Out -->
             <div class="game-card" onclick="playGame('https://html-online-game.github.io/park-out/', 'Park Out')">
                 <span class="badge">STRATEGY 🎯</span>
-                <div class="game-icon">🚗</div>
-                <div class="game-title">Park Out</div>
-                <div class="game-description">
-                    Unblock the parking lot! Move cars in the right order to clear the path. A brain-teasing parking
-                    puzzle challenge.
+                <img src="assets/images/games/park-out.png" alt="Park Out" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Park Out</div>
+                    <div class="game-description">
+                        Unblock the parking lot! Move cars in the right order. A brain-teasing parking puzzle challenge.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Hextris -->
             <div class="game-card" onclick="playGame('https://hextris.io/', 'Hextris')">
                 <span class="badge">ARCADE 🎮</span>
-                <div class="game-icon">⬢</div>
-                <div class="game-title">Hextris</div>
-                <div class="game-description">
-                    Fast-paced hexagonal Tetris! Rotate the hexagon to match falling blocks. Quick reflexes required for
-                    high scores!
+                <img src="assets/images/games/hextris.png" alt="Hextris" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Hextris</div>
+                    <div class="game-description">
+                        Fast-paced hexagonal Tetris! Rotate the hexagon to match blocks. Quick reflexes required!
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- 2048 -->
             <div class="game-card" onclick="playGame('https://play2048.co/', '2048')">
                 <span class="badge">CLASSIC 👑</span>
-                <div class="game-icon">🔢</div>
-                <div class="game-title">2048</div>
-                <div class="game-description">
-                    Join numbers to reach 2048! Swipe to merge tiles in this addictive math puzzle. Simple rules,
-                    challenging gameplay.
+                <img src="assets/images/games/2048.jpg" alt="2048" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">2048</div>
+                    <div class="game-description">
+                        Join numbers to reach 2048! Swipe to merge tiles. Simple rules, challenging and addictive
+                        gameplay.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
         </div>
     </div>
@@ -330,120 +362,142 @@
             <div class="game-card"
                 onclick="playGame('https://html-online-game.github.io/adventure-drivers/', 'Adventure Drivers')">
                 <span class="badge silver">RACING 🏁</span>
-                <div class="game-icon">🏎️</div>
-                <div class="game-title">Adventure Drivers</div>
-                <div class="game-description">
-                    Hit the gas and race through wild terrains! Navigate bumpy roads, perform stunts, and reach the
-                    finish line in this adrenaline-pumping racing game.
+                <img src="assets/images/games/adventure-drivers.png" alt="Adventure Drivers" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Adventure Drivers</div>
+                    <div class="game-description">
+                        Hit the gas! Race through wild terrains, perform stunts, and reach the finish line.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Swingo -->
             <div class="game-card" onclick="playGame('https://html-online-game.github.io/swingo/', 'Swingo')">
                 <span class="badge silver">CASUAL 🎈</span>
-                <div class="game-icon">🪀</div>
-                <div class="game-title">Swingo</div>
-                <div class="game-description">
-                    Swing and fly! Control your character through challenging levels. Master the rope physics and timing
-                    for a smooth journey.
+                <img src="assets/images/games/swingo.png" alt="Swingo" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Swingo</div>
+                    <div class="game-description">
+                        Swing and fly! Master the rope physics and timing for a smooth journey through levels.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Ballistic -->
             <div class="game-card" onclick="playGame('https://html-online-game.github.io/ballistic/', 'Ballistic')">
                 <span class="badge silver">SHOOTER 🎯</span>
-                <div class="game-icon">⚽</div>
-                <div class="game-title">Ballistic</div>
-                <div class="game-description">
-                    Aim, shoot, and destroy! Break colorful blocks in this satisfying ball-shooting puzzle game. Plan
-                    your shots wisely!
+                <img src="assets/images/games/ballestic.png" alt="Ballistic" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Ballistic</div>
+                    <div class="game-description">
+                        Aim, shoot, destroy! Break colorful blocks in this satisfying ball-shooting puzzle game.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
+            </div>
+
+            <!-- Flappy Bird (New) -->
+            <div class="game-card" onclick="playGame('https://html-online-game.github.io/flappy-bird/', 'Flappy Bird')">
+                <span class="badge silver">CLASSIC 🐦</span>
+                <img src="assets/images/games/flappy-bird.png" alt="Flappy Bird" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Flappy Bird</div>
+                    <div class="game-description">
+                        The original hit! Tap to keep the bird in the air and navigate through the pipes.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
+                </div>
+            </div>
+
+            <!-- Awesome Tanks 2 (New) -->
+            <div class="game-card"
+                onclick="playGame('https://html-online-game.github.io/awesome-tanks2/', 'Awesome Tanks 2')">
+                <span class="badge silver">ACTION 💥</span>
+                <img src="assets/images/games/awesome-tanks-2.png" alt="Awesome Tanks 2" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Awesome Tanks 2</div>
+                    <div class="game-description">
+                        Upgrade your tank and destroy enemy bases! Fast-paced action with explosive battles.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
+                </div>
             </div>
 
             <!-- Hole and Mole -->
             <div class="game-card"
                 onclick="playGame('https://dhruv35m.github.io/hole-and-mole-game/', 'Hole and Mole')">
                 <span class="badge silver">REFLEX 👀</span>
-                <div class="game-icon">🦡</div>
-                <div class="game-title">Hole and Mole</div>
-                <div class="game-description">
-                    Whack-a-mole classic! Test your reflexes and speed. Tap the moles before they disappear and beat
-                    your high score!
+                <img src="assets/images/games/hole-mole-game.png" alt="Hole and Mole" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Hole and Mole</div>
+                    <div class="game-description">
+                        Whack-a-mole classic! Test your reflexes and speed. Tap the moles before they disappear.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Clumsy Bird -->
             <div class="game-card" onclick="playGame('https://ellisonleao.github.io/clumsy-bird/', 'Clumsy Bird')">
                 <span class="badge silver">FLAPPY 🐦</span>
-                <div class="game-icon">🐤</div>
-                <div class="game-title">Clumsy Bird</div>
-                <div class="game-description">
-                    Flappy Bird remake! Tap to fly and avoid pipes. Simple controls, endless fun. How far can you go
-                    without crashing?
+                <img src="https://raw.githubusercontent.com/ellisonleao/clumsy-bird/gh-pages/data/screenshots/screenshot1.png"
+                    alt="Clumsy Bird" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Clumsy Bird</div>
+                    <div class="game-description">
+                        Flappy Bird remake! Tap to fly and avoid pipes. Simple controls, endless addictive fun.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Tower Building -->
             <div class="game-card" onclick="playGame('https://iamkun.github.io/tower_game/', 'Tower Building')">
                 <span class="badge silver">BUILDER 🏗️</span>
-                <div class="game-icon">🏢</div>
-                <div class="game-title">Tower Building</div>
-                <div class="game-description">
-                    Stack blocks to build the tallest tower! Perfect timing is key. Drop blocks precisely to create an
-                    epic skyscraper.
+                <img src="assets/images/games/tower-building.png" alt="Tower Building" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Tower Building</div>
+                    <div class="game-description">
+                        Stack blocks to build the tallest tower! Perfect timing is key to create an epic skyscraper.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Tetris -->
             <div class="game-card" onclick="playGame('https://chvin.github.io/react-tetris/', 'Tetris')">
                 <span class="badge silver">CLASSIC 🎮</span>
-                <div class="game-icon">🟦</div>
-                <div class="game-title">Tetris</div>
-                <div class="game-description">
-                    The legendary block-stacking game! Rotate and place falling pieces to clear lines. A timeless puzzle
-                    that never gets old.
+                <img src="assets/images/games/tetris.png" alt="Tetris" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Tetris</div>
+                    <div class="game-description">
+                        The legendary block-stacker! Rotate and place pieces to clear lines. A timeless classic.
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
 
             <!-- Alien Invasion -->
             <div class="game-card" onclick="playGame('https://cykod.github.io/AlienInvasion/', 'Alien Invasion')">
                 <span class="badge silver">SHOOTER 👾</span>
-                <div class="game-icon">👽</div>
-                <div class="game-title">Alien Invasion</div>
-                <div class="game-description">
-                    Defend Earth from alien invaders! Classic space shooter action. Shoot down waves of enemies and save
-                    humanity!
+                <img src="assets/images/games/alien-invasion.jpg" alt="Alien Invasion" class="game-image">
+                <div class="game-content">
+                    <div class="game-title">Alien Invasion</div>
+                    <div class="game-description">
+                        Defend Earth! Classic space shooter action. Shoot down waves of enemies and save humanity!
+                    </div>
+                    <button class="play-button">▶ Play Now</button>
                 </div>
-                <button class="play-button">▶ Play Now</button>
             </div>
         </div>
     </div>
 
     <script>
         function playGame(url, name) {
-            // Option 1: Open in the same WebView (if your app supports it)
+            // Direct navigation - games open in same WebView
             window.location.href = url;
-
-            // Option 2: If you implement JavaScript bridge to Flutter
-            // You can send a message to open GamePlayScreen
-            /*
-            if (window.FlutterChannel) {
-                window.FlutterChannel.postMessage(JSON.stringify({
-                    action: 'playGame',
-                    gameUrl: url,
-                    gameName: name
-                }));
-            } else {
-                window.location.href = url;
-            }
-            */
         }
 
         // Add smooth scroll behavior
